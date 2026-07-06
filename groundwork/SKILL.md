@@ -88,12 +88,15 @@ Full steps live in `references/workflow.md`. Quick shape:
 
 - **Phase 2 — Code rules.** Turn conventions into short, enforceable rule files linked from the
   agent config, e.g. single responsibility, TypeScript + TS/JSDoc, comment policy, small
-  functions composed inside larger ones (debuggable + extendable). Seed from `templates/rules/`;
-  adapt to the repo's actual stack.
+  functions composed inside larger ones (debuggable + extendable), and a **commit-message
+  convention** the agent follows when committing (Conventional Commits, pattern-only — no
+  husky/hooks). Seed from `templates/rules/`; adapt to the repo's actual stack.
 
 - **Phase 3 — Global rules.** Architecture and code-division rules that outlive any one feature
-  (layer boundaries, where side effects live, folder layout). Create only the ones that don't
-  already exist. Use `templates/rules/clean-architecture.md` as a starting point.
+  (layer boundaries, where side effects live, folder layout), plus an **optional git-workflow
+  rule** (branching, pull-before-work, push policy, notify-on-conflict, history safety) — **ask**
+  which parts the team wants. Create only the ones that don't already exist. Use
+  `templates/rules/clean-architecture.md` and `templates/rules/git-workflow.md` as starting points.
 
 - **Phase 4 — Feature loop.** Paste the client ticket. **Audit the existing code first** for
   functionality that already matches, to reuse/extend instead of duplicating (report the

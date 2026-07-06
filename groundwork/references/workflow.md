@@ -89,6 +89,9 @@ Goal: conventions become short rule files the agent must follow, linked from the
      larger ones, not one giant function; easier to debug and extend. (Covered inside the SRP
      and clean-architecture rule files.)
    - **Comment policy** — comment the *why*, not the *what*; delete dead code and stale comments.
+   - **Commit convention** — Conventional Commits pattern the agent follows when committing
+     (`templates/rules/commit-convention.md`). **No husky / commitlint / git hooks** — pattern only,
+     upheld by habit and review.
 2. **Adapt, don't paste blindly.** Rewrite examples in the repo's language and idioms.
 3. **Store rules** where the team keeps them — commonly `.claude/rules/` or `docs/rules/`, or
    inline sections in `AGENTS.md`. Ask if unclear; default `docs/rules/`.
@@ -110,6 +113,10 @@ Goal: architecture / code-division rules that outlive any single feature.
    - **Folder / code division** — where a new feature's files go, naming conventions.
    - **Error handling & validation** — validate at boundaries, throw with context, no bug-masking
      fallbacks.
+   - **Git workflow (optional)** — branching, pull-before-work, push policy (manual vs auto),
+     notify-on-conflict, history safety. From `templates/rules/git-workflow.md`. **Ask the team
+     which parts to enable** and record the chosen push/merge policy in the rule so the agent
+     doesn't re-ask; delete the parts they don't want.
    Start from `templates/rules/clean-architecture.md`.
 3. **Link from the config** alongside the phase-2 rules.
 

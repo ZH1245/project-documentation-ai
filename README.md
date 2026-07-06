@@ -116,6 +116,8 @@ project-documentation-ai/
         single-responsibility.md
         typescript-jsdoc.md
         clean-architecture.md
+        commit-convention.md         # Conventional Commits pattern (no husky)
+        git-workflow.md              # optional git rules (push/pull/conflict)
 ```
 
 ---

@@ -16,6 +16,13 @@
 - [Clean architecture & code division](./clean-architecture.md) — layer boundaries, where side
   effects live, folder layout, error handling at boundaries.
 
+## Git & commits
+
+- [Commit message convention](./commit-convention.md) — Conventional Commits pattern the agent
+  follows when committing. Pattern-only, no husky/hooks.
+- [Git workflow](./git-workflow.md) — **optional**: branching, pull-before-work, push policy,
+  notify-on-conflict, history safety. Pick what fits your team.
+
 ## How to add a rule
 
 1. Write a short file here: what the rule is, why, and a good/bad example.
