@@ -35,5 +35,6 @@
 ## Where to go next
 
 - Per-feature / per-module detail: `./modules/` (see `./README.md` for the index)
+- Dependencies & their docs: `./dependencies.md`
 - Rules the code follows: <link to rules folder>
 - Decisions & lessons: `./decisions.md`

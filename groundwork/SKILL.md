@@ -57,6 +57,11 @@ a lesson appears.
 5. **Docs keep the agent on track.** The ticket + implementation-plan pair is not bureaucracy —
    it is the memory of *what was asked, when, and why*, so the agent (and the next dev) can
    extend behaviour instead of re-deriving it.
+6. **Docs track code (self-maintaining).** When code that a doc describes changes — a module's
+   behaviour, a feature flow, a dependency — update that doc in the **same change**, never as a
+   follow-up. The skill writes this rule into the agent config so every future session enforces
+   it. This is what keeps the knowledge base, module/feature docs, and dependency list from
+   drifting, and pairs with the Phase 5 decision log to make the whole setup self-improving.
 
 ## Phase summaries
 
@@ -69,7 +74,10 @@ Full steps live in `references/workflow.md`. Quick shape:
 - **Phase 1 — Knowledge base.** Two layers. (a) One **abstract** overview for a dev:
   what the product is, the big pieces, how they talk. (b) **Technical docs split per feature
   or per module** (ask which). Use `templates/knowledge-base.md` and `templates/module-doc.md`.
-  Add a docs index and link it from the agent config.
+  Also scan the dependency manifest, **resolve each significant package's official docs URL**
+  (pinned to the major version in use), and write `docs/dependencies.md` so the agent can look
+  up a library's docs instead of guessing its API. Use `templates/dependencies-and-docs.md`.
+  Add a docs index and link everything from the agent config.
 
 - **Phase 2 — Code rules.** Turn conventions into short, enforceable rule files linked from the
   agent config, e.g. single responsibility, TypeScript + TS/JSDoc, comment policy, small

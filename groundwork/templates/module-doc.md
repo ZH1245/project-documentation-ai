@@ -31,3 +31,8 @@ at each boundary.>
 
 <Non-obvious constraints, invariants, footguns, or historical decisions worth knowing before
 changing this. Link related entries in `../decisions.md` where relevant.>
+
+---
+
+_Keep in sync: when this module's behaviour or public surface changes, update this doc in the same
+change._

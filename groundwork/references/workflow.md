@@ -47,9 +47,31 @@ Goal: a human dev (and the agent) can understand the repo without reading all th
 3. **Write the layered technical docs** — one file per feature or per module, e.g.
    `docs/modules/auth.md`, using `templates/module-doc.md`. Each covers: responsibility, key
    files, public surface, data it owns, how it connects to neighbours, gotchas.
-4. **Add a docs index** — `docs/README.md` listing every doc with a one-line hook. Link the
-   index from the agent config (`## Where things live`).
-5. Keep each doc **short and current**. A stale long doc is worse than a short accurate one.
+4. **Write the dependency docs index** — `docs/dependencies.md` from
+   `templates/dependencies-and-docs.md`. Read the dependency manifest, and for each **significant**
+   package (skip trivial utilities like `lodash`, `chalk`):
+   - find its official docs URL — prefer the `homepage` / `repository` / `docs` field in the
+     manifest, then the official site, then the GitHub README, then the registry page as fallback;
+   - **pin the link to the major version in use** (e.g. Prisma 6.x → the v6 docs, not legacy);
+   - add a one-line note on what the project uses it for.
+   Group as Core / Dev / Build-tooling. This is the page the agent consults before writing code
+   against a library, so it uses the real current API instead of guessing from memory.
+5. **Add a docs index** — `docs/README.md` listing every doc (overview, modules, dependencies)
+   with a one-line hook. Link the index and `docs/dependencies.md` from the agent config
+   (`## Where things live` / `## Dependencies & docs`).
+6. **Write the docs-track-code rule into the agent config** so every future session enforces it.
+   Word it to cover all documented artifacts, e.g.:
+   > When you change code that a doc describes, update that doc in the **same change** — never in a
+   > follow-up:
+   > - change a **module/feature's** behaviour or public surface → update its `docs/modules/<x>.md`
+   >   (or `docs/<FEATURE>/`), and the knowledge base if the big-picture shifted;
+   > - add/remove a **dependency** or bump a major version → update `docs/dependencies.md` (row +
+   >   docs link + version);
+   > - if a doc's file no longer matches the code, the change isn't done.
+
+   This makes the docs self-maintaining: they can't drift, because updating them is part of the
+   definition of "changed the code."
+7. Keep each doc **short and current**. A stale long doc is worse than a short accurate one.
 
 Output: docs folder tree + index path. Suggest phase 2 next.
 

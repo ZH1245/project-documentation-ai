@@ -11,13 +11,15 @@ It turns one repeatable methodology into phases you run **one at a time**:
 | Phase | What it does |
 | ----- | ------------ |
 | **0 · Bootstrap agent context** | Generate/complete `CLAUDE.md` / `AGENTS.md` so a cold agent is instantly useful. |
-| **1 · Knowledge base** | An abstract project overview **+** layered per-feature/per-module technical docs. |
+| **1 · Knowledge base** | An abstract project overview **+** layered per-feature/per-module technical docs **+** a `dependencies.md` that links each package's official docs so the agent looks up real APIs. |
 | **2 · Code rules** | Short, enforceable convention files (SRP, TS/JSDoc, small composed functions, comment policy) linked from the agent config. |
 | **3 · Global rules** | Architecture & code-division rules that outlive any single feature. |
 | **4 · Feature loop** | From a client ticket: **reuse audit** → `ticket.md` + `implementation-plan.md` for dev review → build only after ack. |
 | **5 · Decision log** | Record lessons (date + why), linked from the config, so the repo teaches the next session. |
 
 The docs the skill produces keep the agent on track: it always knows **what was asked, when, and why**.
+And they're **self-maintaining** — the skill writes a rule into your agent config so that whenever
+documented code (a module, a feature, a dependency) changes, its doc is updated in the same change.
 
 ---
 
@@ -75,19 +77,20 @@ Paste this into Claude Code (or Codex) chat **in the repo you want to set up**:
 
 ```
 Install the Claude Code skill at https://github.com/ZH1245/project-documentation-ai:
-git clone it to a temp dir, copy its `groundwork/` folder into ~/.claude/skills/groundwork,
-then run `/groundwork onboard this repo`.
+git clone it to a temp dir, then ASK ME what command name I want it installed under
+(default: groundwork). Run `./install.sh <that-name>`, then `/<that-name> onboard this repo`.
 ```
 
-The agent has shell access, so it clones the repo, copies the skill into place, and starts Phase 0.
-(There's no native "install a skill straight from a URL" command yet — the agent does the clone +
-copy for you. See [How the paste-URL method works](#how-the-paste-url-method-works).)
+The agent has shell access, so it clones the repo, asks your preferred command name, installs the
+skill under it, and starts Phase 0. (There's no native "install a skill straight from a URL" command
+yet — the agent does the clone + install for you. See
+[How the paste-URL method works](#how-the-paste-url-method-works).)
 
 ### Option B — one command
 
 ```bash
 git clone https://github.com/ZH1245/project-documentation-ai.git
-cd project-documentation-ai && ./install.sh
+cd project-documentation-ai && ./install.sh          # or: ./install.sh <your-command-name>
 ```
 
 ### Option C — manual, personal
@@ -152,10 +155,18 @@ each repo is set up its own way.
 
 ---
 
-## Rename it
+## Choose your own command name
 
-Prefer a different command name? Rename the `groundwork/` folder **and** the `name:` field in
-`groundwork/SKILL.md` to match, reinstall, then invoke it by the new name.
+The skill is invoked by its **name** — the folder under `~/.claude/skills/` and the `name:` field in
+`SKILL.md`. `install.sh` sets both for you:
+
+```bash
+./install.sh docsetup      # installs as /docsetup instead of /groundwork
+```
+
+Name rules: lowercase letters, digits, and hyphens. In the paste-URL flow (Option A) the agent
+**asks you** which name to use, then installs under it. To change the name later, just re-run
+`install.sh` with the new one.
 
 ---
 
