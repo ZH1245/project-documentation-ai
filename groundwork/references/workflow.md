@@ -9,6 +9,29 @@ links in the imported one.
 
 ---
 
+## Full setup (one flow) — run this when the user wants everything at once
+
+Use this when the user asks for a full/one-flow setup or hands you a fresh repo without naming a
+phase. Goal: run **Phases 0 → 1 → 2 → 3 without stopping between them**, asking questions only once.
+
+1. **Read the repo quickly** — manifest, folder layout, existing config/docs — so your questions are
+   informed and you don't ask what you can already see.
+2. **Ask the batched question set once** (proceed on the answers, defaults in parentheses):
+   - Agent config file if none exists — `AGENTS.md` (default) and/or `CLAUDE.md`.
+   - Docs location (`docs/`).
+   - Split technical docs per feature or per module (match the repo).
+   - Which code rules to include (stack-appropriate set + commit convention).
+   - Enable the optional git-workflow rule? If yes, push policy (manual/auto) + merge/conflict handling.
+3. **Run the phases in order** using those answers: Phase 0, then 1, then 2, then 3. Do **not** pause
+   between them or re-ask what step 2 already covered.
+4. **Pause only for a genuine blocker** you can't decide from the answers or the code.
+5. **Finish with one summary**: files created, where they live, and that Phase 4 runs when a ticket
+   arrives / Phase 5 when a lesson appears.
+
+The per-phase detail below still applies — this section only changes *when you stop and ask*.
+
+---
+
 ## Phase 0 — Bootstrap agent context
 
 Goal: a cold agent (Claude, Codex, Cursor, anything) can open this repo and be immediately useful.

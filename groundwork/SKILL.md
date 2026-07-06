@@ -50,11 +50,38 @@ Match the user's prompt to a phase. When in doubt, state which phase you picked 
 A new repo usually flows 0 → 1 → 2 → 3 once, then repeats phase 4 per feature and phase 5 whenever
 a lesson appears.
 
+## Run modes
+
+**Single phase (default when the prompt names one).** Run just that phase, then stop and suggest the
+next. Best for incremental work on an existing repo.
+
+**Full setup — one flow.** When the user asks to "set everything up", "do it all in one flow",
+"full setup", or hands you a fresh repo without naming a phase: run **Phases 0 → 1 → 2 → 3 end to
+end without stopping between them.** To honour "ask where needed" without interrupting at every
+phase:
+
+1. **Ask all setup questions once, up front, batched** (checklist below), then proceed on the answers.
+2. Run each phase in order using those answers — do **not** pause between phases.
+3. Pause mid-flow **only** for a genuine blocker you cannot decide from the answers or the code.
+4. End with one summary: what was created, where, and the next step (Phase 4 when a ticket arrives).
+
+Phases 4 (needs a ticket) and 5 (event-driven) are **not** part of the one-flow — they run on demand.
+
+### Up-front question checklist (ask once, then don't stop)
+
+- **Agent config file** to use if none exists — default `AGENTS.md` (agent-agnostic); also create
+  `CLAUDE.md` if they use Claude Code.
+- **Docs location** — default `docs/`.
+- **Split technical docs** per feature or per module — default: match the repo.
+- **Code rules to include** — default: the stack-appropriate set + commit convention.
+- **Optional git-workflow rule?** If yes: push policy (manual vs auto) and merge/conflict handling.
+
 ## Core operating principles (apply in every phase)
 
 1. **Ask, don't assume, on structure choices.** Docs location (`docs/`, `/wiki`, `.notes/`),
    split strategy (per-feature vs per-module), and rule set depend on the repo and the team.
-   Offer a sensible default, but let the user pick.
+   Offer a sensible default, but let the user pick. **In full-setup (one-flow) mode, batch these
+   questions up front** so the flow runs without stopping at each phase.
 2. **Explain before you edit.** For any non-trivial change: findings → plan → wait for ack.
    Trivial/mechanical → just do it. Never silently write then narrate after.
 3. **Detect the agent config filename first.** Some stacks use `CLAUDE.md`, some `AGENTS.md`,

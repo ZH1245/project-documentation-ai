@@ -38,13 +38,16 @@ agent's chat **in the repo you want to set up**:
 Set up this repo using the "groundwork" methodology at
 https://github.com/ZH1245/project-documentation-ai :
 git clone it to a temp dir, read groundwork/SKILL.md and groundwork/references/workflow.md,
-then follow Phase 0 to onboard this repo, using the scaffolds in groundwork/templates/.
-Ask me anything the playbook says to ask (e.g. where docs should live).
+then run the FULL SETUP in one flow (Phases 0-3) — ask me all your questions up front,
+then run straight through without stopping between phases. Use groundwork/templates/.
 ```
 
-The agent clones the repo, reads the playbook, and runs it. Nothing is installed; it just follows
-the markdown. For later phases, swap "Phase 0 to onboard this repo" for what you want (e.g.
-"Phase 4 for this ticket: <paste ticket>").
+The agent clones the repo, reads the playbook, asks the setup questions **once**, then runs Phases
+0→3 end to end. Nothing is installed; it just follows the markdown.
+
+Prefer to go one phase at a time instead? Say `follow Phase 0 to onboard this repo` and it stops
+after each phase and suggests the next. Either way, **Phase 4** (a feature ticket) and **Phase 5**
+(record a lesson) run on demand later — e.g. `run Phase 4 for this ticket: <paste ticket>`.
 
 ## Make it durable in a repo (any agent)
 
@@ -132,7 +135,8 @@ Drive it one phase at a time. The starting instruction tells the playbook **whic
 
 | Goal                            | Instruction                                                            |
 | ------------------------------- | --------------------------------------------------------------------- |
-| Onboard a new repo              | onboard this repo, the agent knows nothing about it                    |
+| **Full setup, one flow**        | **set everything up in one flow — ask me all questions up front**      |
+| Onboard a new repo (one phase)  | onboard this repo, the agent knows nothing about it                    |
 | Build the knowledge base        | build a knowledge base, split technical docs per module               |
 | Add code rules                  | set up code rules for this React + TS repo                            |
 | Add architecture rules          | add global architecture and code-division rules                      |
