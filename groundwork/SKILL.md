@@ -17,9 +17,16 @@ A repeatable way to make **any repo easy for an AI agent (and a new human dev) t
 and to keep it that way as the project grows. Works with Claude Code, Codex, Cursor, or any
 agent that reads a project config file.
 
-The skill runs in **phases**. You rarely run all of them at once. The prompt you pass
-(`/groundwork <prompt>`) is the starting instruction — it tells the skill *which phase to run*
-and *what the goal is*. If the prompt is vague, ask one clarifying question, then proceed.
+> **Agent-agnostic.** This file is a plain-markdown playbook that any agent can read and follow.
+> The YAML frontmatter above is used **only by Claude Code** to expose this as a `/`-slash command;
+> other agents (Codex, Cursor, …) just ignore it and read the body below. Nothing here depends on a
+> Claude-specific feature — the phases, `references/workflow.md`, and `templates/` work the same for
+> any agent that can read files and run shell commands.
+
+It runs in **phases**. You rarely run all of them at once. The starting instruction (whether passed
+as `/groundwork <prompt>` in Claude Code, or just told to any other agent in plain language) tells
+you *which phase to run* and *what the goal is*. If it's vague, ask one clarifying question, then
+proceed.
 
 ## First: read the playbook
 
